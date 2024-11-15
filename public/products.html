@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Our Products</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+<main id="product-list">
+    <!-- Product entries will be dynamically added here -->
+</main>
+
+<!-- Scripts -->
+<script src="app.js"></script>
+<script src="cart.js"></script>
+<script>
+    // Define products array with details
+    const products = [
+        { id: 1, name: "Product 1", description: "This is product 1", price: 10 },
+        { id: 2, name: "Product 2", description: "This is product 2", price: 20 }
+    ];
+
+    // Function to dynamically add products to the page
+    function displayProducts() {
+        const productListElement = document.getElementById('product-list');
+
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('product');
+            productDiv.setAttribute('data-id', product.id);
+
+            productDiv.innerHTML = `
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <p>Price: $${product.price}</p>
+                <button onclick="addToCart(${product.id})">Add to Cart</button>
+            `;
+
+            productListElement.appendChild(productDiv);
+        });
+    }
+
+    // Call displayProducts function when the page loads
+    displayProducts();
+</script>
+</body>
+</html>
